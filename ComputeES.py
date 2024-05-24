@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import math
 from collections import defaultdict
+import time
+
 
 def CalLskForOneRelationQ1(delete_id,k,from_to_relations):
     relations = from_to_relations
@@ -47,6 +49,7 @@ def CalLsk(k,query_id,n,from_to_relations):
 
 if __name__ == "__main__":
    for query_id in ['1','2']:
+        T1 = time.time()
         from_to_relations = defaultdict(lambda: defaultdict(int))
         mf_output_path = "query/query_result/mf_Q"+query_id+".txt"
         with open(mf_output_path,'r') as f:
@@ -64,4 +67,5 @@ if __name__ == "__main__":
             if(max_res_at_k>max_res):
                 max_res = max_res_at_k
         res = max_res
-        print('Q{}:{}'.format(query_id,res))
+        T2 = time.time()
+        print('Q{}--res:{},time:{}ms'.format(query_id,res,(T2 - T1)*1000))
